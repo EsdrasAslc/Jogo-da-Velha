@@ -19,10 +19,6 @@ const game = {
 
 function optionClick(value) {
 
-    if (game.status === "stop") {
-        return restartGame();
-    }
-
     const verPlay = game.played.includes(value);
     // !true  -> false
     if (!verPlay) {
@@ -95,6 +91,11 @@ function playerTurn(player, value) {
 function win(plays) {
     if (checkWin(plays)) {
         game.status = "stop";
+        alert(game.turn.name + " venceu a partida! Agora está com " + game.turn.wins + " Vitoria");
+        restartGame();
+    } else if (game.round === 10) {
+        alert("Deu velha! Ninguém pontua!");
+        restartGame();
     } else if (game.turn === player1) {
         game.turn = player2;
     } else if (game.turn === player2) {
@@ -104,7 +105,6 @@ function win(plays) {
 
 function restartGame() {
     game.turn.wins += 1;
-    alert(game.turn.name + " venceu a partida! Agora está com " + game.turn.wins + " Vitoria");
 
     // reset csa games
 
@@ -119,23 +119,15 @@ function restartGame() {
 
     // div Otimizar isso aqui!
 
-    const divErase1 = document.querySelector('.op-1');
-    const divErase2 = document.querySelector('.op-2');
-    const divErase3 = document.querySelector('.op-3');
-    const divErase4 = document.querySelector('.op-4');
-    const divErase5 = document.querySelector('.op-5');
-    const divErase6 = document.querySelector('.op-6');
-    const divErase7 = document.querySelector('.op-7');
-    const divErase8 = document.querySelector('.op-8');
-    const divErase9 = document.querySelector('.op-9');
+    setTimeout ( divReset = () => {
+        let divErase;
 
-    divErase1.innerHTML = " ";
-    divErase2.innerHTML = " ";
-    divErase3.innerHTML = " ";
-    divErase4.innerHTML = " ";
-    divErase5.innerHTML = " ";
-    divErase6.innerHTML = " ";
-    divErase7.innerHTML = " ";
-    divErase8.innerHTML = " ";
-    divErase9.innerHTML = " ";
+        for (let i = 1; i < 10; i++ ) {
+            divErase = document.querySelector('.op-' + i);
+
+            divErase.innerHTML = " ";
+        }
+    }, 1500 );
+
+
 }
