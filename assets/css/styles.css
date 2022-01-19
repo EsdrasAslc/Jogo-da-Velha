@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
+body {
+    max-width: 1200px;
+    margin: auto
+}
+
+.game-box div{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    font-family: 'Dongle', sans-serif;
+}
+
+.game-box{
+    margin: auto;
+    max-width: 600px;
+    display: grid;
+    background-color: black;
+    height: 500px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
