@@ -19,6 +19,8 @@ const game = {
 
 function optionClick(value) {
 
+    if (game.status === "stop" ) { return false;}
+
     const verPlay = game.played.includes(value);
     // !true  -> false
     if (!verPlay) {
@@ -91,7 +93,7 @@ function playerTurn(player, value) {
 function win(plays) {
     if (checkWin(plays)) {
         game.status = "stop";
-        alert(game.turn.name + " venceu a partida! Agora está com " + game.turn.wins + " Vitoria");
+        alert(game.turn.name + " venceu a partida! Agora está com " + (game.turn.wins + 1) + " Vitorias");
         restartGame();
     } else if (game.round === 10) {
         alert("Deu velha! Ninguém pontua!");
@@ -108,7 +110,6 @@ function restartGame() {
 
     // reset csa games
 
-    game.status = "running";
     game.played = [];
     game.round = 1;
 
@@ -117,8 +118,6 @@ function restartGame() {
     player1.plays = [];
     player2.plays = [];
 
-    // div Otimizar isso aqui!
-
     setTimeout ( divReset = () => {
         let divErase;
 
@@ -126,8 +125,8 @@ function restartGame() {
             divErase = document.querySelector('.op-' + i);
 
             divErase.innerHTML = " ";
+
+            game.status = "running";
         }
-    }, 1500 );
-
-
+    }, 500 );
 }
